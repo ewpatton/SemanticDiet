@@ -9,9 +9,9 @@ export CSV2RDF4LOD_CONVERT_DATA_ROOT=`pwd`/source
 
 source ./prep.sh
 
-NAME=`basename $0`
-GITHASH=`git log -- $NAME | head -n 1 | cut -d' ' -f 2 | cut -b 33-40`
-SCRIPT=`echo "$NAME" | sed 's/\./-/g'`
+SELF=`basename $0`
+GITHASH=`git log -- $SELF | head -n 1 | cut -d' ' -f 2 | cut -b 33-40`
+SCRIPT=`echo "$SELF" | sed 's/\./-/g'`
 
 cd source/usda-gov/nutrient-database/version/$NAME/source
 pcurl.sh "$URL" -n $NAME -e $EXT || exit -1
