@@ -7,7 +7,7 @@ fi
 
 export CSV2RDF4LOD_CONVERT_DATA_ROOT=`pwd`/source
 
-source ./prep.sh
+source ./prep.sh || exit -1
 
 SELF=`basename $0`
 GITHASH=`git log -- $SELF | head -n 1 | cut -d' ' -f 2 | cut -b 33-40`
