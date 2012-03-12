@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY units "http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#">
+  <!ENTITY res "http://sweet.jpl.nasa.gov/2.0/sciResearch.owl#">
+  <!ENTITY oper "http://sweet.jpl.nasa.gov/2.0/mathOperation.owl">
+  <!ENTITY oper2 "http://sweet.jpl.nasa.gov/2.0/mathOperation.owl#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY here "http://semanticdiet.com/schema/common/">
+]>
+
+<rdf:RDF xml:base="&here;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;"
+         xmlns:oper="&oper;"
+         xmlns:oper2="&oper2;"
+         xmlns:res="&res;"
+	 xmlns:sd="&here;"
+         xmlns:units="&units;">
+  <units:BaseUnit rdf:about="&here;gram">
+    <rdfs:label xml:lang="en">gram</rdfs:label>
+    <units:hasSymbol rdf:datatype="&xsd;string">g</units:hasSymbol>
+    <rdfs:comment xml:lang="en">Gram is specified as a base unit, rather than kilogram, as it makes more sense from a computational and representation perspective.</rdfs:comment>
+  </units:BaseUnit>
+
+  <units:BaseUnit rdf:about="&here;calorie">
+    <rdfs:label xml:lang="en">calorie</rdfs:label>
+    <units:hasSymbol rdf:datatype="&xsd;string">cal</units:hasSymbol>
+  </units:BaseUnit>
+
+  <units:BaseUnit rdf:about="&here;joule">
+    <rdfs:label xml:lang="en">joule</rdfs:label>
+    <units:hasSymbol rdf:datatype="&xsd;string">J</units:hasSymbol>
+  </units:BaseUnit>
+
+  <units:Prefix rdf:about="&here;centa">
+    <rdfs:label xml:lang="en">centa</rdfs:label>
+    <units:hasValue rdf:datatype="&xsd;double">1e2</units:hasValue>
+  </units:Prefix>
+
+  <units:Prefix rdf:about="&here;kilo">
+    <rdfs:label xml:lang="en">kilo</rdfs:label>
+    <units:hasValue rdf:datatype="&xsd;double">1e3</units:hasValue>
+  </units:Prefix>
+
+  <units:UnitDerivedByScaling rdf:about="&here;100grams">
+    <rdfs:label xml:lang="en">100 grams</rdfs:label>
+    <units:hasSymbol rdf:datatype="&xsd;string">100 g</units:hasSymbol>
+    <units:derivedFromUnit rdf:resource="&here;gram"/>
+    <units:hasPrefix rdf:resource="&here;centa"/>
+  </units:UnitDerivedByScaling>
+
+  <units:UnitDerivedByRaisingToPower rdf:about="&here;per100g">
+    <units:derivedFromUnit rdf:resource="&here;100grams"/>
+    <oper2:hasPower rdf:datatype="&xsd;double">-1</oper2:hasPower>
+  </units:UnitDerivedByRaisingToPower>
+
+  <units:ComplexUnit rdf:about="&here;gram_per100g">
+    <oper2:productOf rdf:resource="&here;per100g"/>
+    <oper2:productOf rdf:resource="&here;gram"/>
+  </units:ComplexUnit>
+
+  <units:UnitDerivedByScaling rdf:about="&here;milligram">
+    <units:derivedFromUnit rdf:resource="&here;gram"/>
+    <units:hasPrefix rdf:resource="&units;milli"/>
+    <units:hasSymbol rdf:datatype="&xsd;string">mg</units:hasSymbol>
+  </units:UnitDerivedByScaling>
+
+  <units:ComplexUnit rdf:about="&here;milligram_per100g">
+    <oper2:productOf rdf:resource="&here;per100g"/>
+    <oper2:productOf rdf:resource="&here;milligram"/>
+  </units:ComplexUnit>
+
+  <units:UnitDerivedByScaling rdf:about="&here;microgram">
+    <units:derivedFromUnit rdf:resource="&here;gram"/>
+    <units:hasPrefix rdf:resource="&units;micro"/>
+    <units:hasSymbol rdf:datatype="&xsd;string">μg</units:hasSymbol>
+  </units:UnitDerivedByScaling>
+
+  <units:ComplexUnit rdf:about="&here;microgram_per100g">
+    <oper2:productOf rdf:resource="&here;per100g"/>
+    <oper2:productOf rdf:resource="&here;microgram"/>
+  </units:ComplexUnit>
+
+  <units:BaseUnit rdf:about="&here;InternationalUnit">
+    <units:hasSymbol rdf:datatype="&xsd;string">IU</units:hasSymbol>
+    <rdfs:label xml:lang="en">International Unit</rdfs:label>
+  </units:BaseUnit>
+
+  <units:ComplexUnit rdf:about="&here;IU_per100g">
+    <oper2:productOf rdf:resource="&here;per100g"/>
+    <oper2:productOf rdf:resource="&here;InternationalUnit"/>
+  </units:ComplexUnit>
+
+  <units:UnitDerivedByScaling rdf:about="&here;kilocalorie">
+    <oper2:productOf rdf:resource="&here;calorie"/>
+    <oper2:productOf rdf:resource="&here;kilo"/>
+    <units:hasSymbol rdf:datatype="&xsd;string">kcal</units:hasSymbol>
+  </units:UnitDerivedByScaling>
+
+  <units:ComplexUnit rdf:about="&here;kcal_per100g">
+    <oper2:productOf rdf:resource="&here;kilocalorie"/>
+    <oper2:productOf rdf:resource="&here;per100g"/>
+  </units:ComplexUnit>
+
+  <units:UnitDerivedByScaling rdf:about="&here;kilojoule">
+    <oper2:productOf rdf:resource="&here;joule"/>
+    <oper2:productOf rdf:resource="&here;kilo"/>
+    <units:hasSymbol rdf:datatype="&xsd;string">kJ</units:hasSymbol>
+  </units:UnitDerivedByScaling>
+
+  <units:ComplexUnit rdf:about="&here;kj_per100g">
+    <oper2:productOf rdf:resource="&here;kilojoule"/>
+    <oper2:productOf rdf:resource="&here;per100g"/>
+  </units:ComplexUnit>
+
+  <owl:ObjectProperty rdf:about="&here;measuredIn">
+    <rdfs:range rdf:resource="&units;Unit"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&here;hasMeasurement">
+    <rdfs:range rdf:resource="&res;Measurement"/>
+  </owl:ObjectProperty>
+</rdf:RDF>

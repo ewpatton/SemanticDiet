@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY sd "http://semanticdiet.com/schema/">
+  <!ENTITY foaf "http://xmlns.com/foaf/">
+  <!ENTITY dc "http://purl.org/dc/terms/">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY nndsr "http://semanticdiet.com/schema/usda/nndsr/">
+  <!ENTITY sioc "http://rdfs.org/sioc/ns#">
+]>
+<rdf:RDF
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:pmlj="http://inferenceweb.stanford.edu/2006/06/pml-justification.owl#"
+ xmlns:pmlp="http://inferenceweb.stanford.edu/2006/06/pml-provenance.owl#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:nndsr22="http://semanticdiet.com/data/usda/nndsr/22/"
+ xmlns:nndsr="http://semanticdiet.com/schema/usda/nndsr/"
+ xmlns:units="http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#"
+ xmlns:oper2="http://sweet.jpl.nava.gov/2.0/mathOperation.owl#"
+ xmlns:sd="http://semanticdiet.com/schema/"
+>
+
+  <!-- OWL Classes -->
+  <owl:Class rdf:about="&sd;Recipe">
+    <rdfs:label>Recipe</rdfs:label>
+    <rdfs:comment>Represents a recipe with one or more ingredients and steps.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&foaf;name"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;hasIngredient"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;hasInstruction"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;hasRating"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&sd;Ingredient">
+    <rdfs:label>Ingredient</rdfs:label>
+    <rdfs:comment>Represents a single ingredient in a recipe as a (item, amount, unit) tuple.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;hasUnit"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;measureOf"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;measureValue"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&sd;Instruction">
+    <rdfs:label>Instruction</rdfs:label>
+    <rdfs:comment>Represents a single instruction in a recipe, what tools and ingredients are needed, and the order of the instruction in the set of instructions.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;text"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;requiresTool"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;requiresIngredient"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;order"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&sd;Rating">
+    <rdfs:label>Rating</rdfs:label>
+    <rdfs:comment>Represents the rating for a recipe that one might find on a community board. Specifies the min and max of the scale, the actual rating, comment text associated with the rating, and the original source and creator of the rating.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;comment"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&dc;source"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&dc;creator"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;minRating"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;maxRating"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&sd;rating"/>
+	<owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <!-- OWL Object Properties -->
+  <owl:ObjectProperty rdf:about="&sd;hasIngredient">
+    <rdfs:label>Has Ingredient</rdfs:label>
+    <rdfs:comment>Relates an ingredient to an object</rdfs:comment>
+    <rdfs:range rdf:resource="&sd;Ingredient"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;hasInstruction">
+    <rdfs:label>Has Instruction</rdfs:label>
+    <rdfs:comment>Relates an instruction to an object</rdfs:comment>
+    <rdfs:range rdf:resource="&sd;Instruction"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;hasRating">
+    <rdfs:label>Has Rating</rdfs:label>
+    <rdfs:comment>Relates a rating to an object</rdfs:comment>
+    <rdfs:range rdf:resource="&sd;Rating"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;requiresTool">
+    <rdfs:label>Requires Tool</rdfs:label>
+    <rdfs:comment>Indicates that an object requires a particular tool</rdfs:comment>
+    <rdfs:range rdf:resource="&sd;Tool"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;requiresIngredient">
+    <rdfs:label>Requires Ingredient</rdfs:label>
+    <rdfs:comment>Indicates that an object requires a particular ingredient</rdfs:comment>
+    <rdfs:range rdf:resource="&sd;Ingredient"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;comment">
+    <rdfs:label>Comment</rdfs:label>
+    <rdfs:comment>Points to a post describing the content of the comment</rdfs:comment>
+    <rdfs:range rdf:resource="&sioc;Post"/>
+  </owl:ObjectProperty>
+
+  <!-- OWL Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="&sd;order">
+    <rdfs:label>Order</rdfs:label>
+    <rdfs:comment>Indicates the order of an object in a collection</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&sd;text">
+    <rdfs:label>Text</rdfs:label>
+    <rdfs:comment>Text related to the subject</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&sd;minRating">
+    <rdfs:label>Min. Rating</rdfs:label>
+    <rdfs:comment>Indicates the minimum possible rating</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&sd;maxRating">
+    <rdfs:label>Max. Rating</rdfs:label>
+    <rdfs:comment>Indicates the maximum possible rating</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&sd;rating">
+    <rdfs:label>Rating</rdfs:label>
+    <rdfs:comment>Indicates the actual rating specified by a particular individual</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>

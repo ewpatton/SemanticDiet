@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY sd "http://semanticdiet.com/schema/">
+  <!ENTITY nndsr "http://semanticdiet.com/schema/usda/nndsr/">
+  <!ENTITY guide "http://semanticdiet.com/schema/health.gov/dietaryguide/dga2005/">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY units "http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#">
+  <!ENTITY plans "http://semanticdiet.com/data/health.gov/dietaryguide/dga2005/">
+  <!ENTITY common "http://semanticdiet.com/schema/common/">
+  <!ENTITY nndata "http://semanticdiet.com/data/usda/nndsr/23/">
+]>
+<rdf:RDF
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:pmlj="http://inferenceweb.stanford.edu/2006/06/pml-justification.owl#"
+ xmlns:pmlp="http://inferenceweb.stanford.edu/2006/06/pml-provenance.owl#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:nndsr22="http://semanticdiet.com/data/usda/nndsr/22/"
+ xmlns:nndsr="http://semanticdiet.com/schema/usda/nndsr/"
+ xmlns:units="http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#"
+ xmlns:oper2="http://sweet.jpl.nava.gov/2.0/mathOperation.owl#"
+ xmlns:sd="http://semanticdiet.com/schema/"
+ xmlns:guide="&guide;"
+>
+
+  <!-- USDA Food Guide -->
+  <guide:DailyNutritionPlan rdf:about="&plans;USDA-Food-Guide">
+    <guide:baseEnergyConsumption>
+      <nndsr:Measurement>
+	<nndsr:measureOf rdf:resource="&common;kilocalorie"/>
+	<nndsr:measuredValue rdf:datatype="&xsd;double">2000</nndsr:measuredValue>
+	<nndsr:hasUnit rdf:resource="&common;kilocalorie"/>
+      </nndsr:Measurement>
+    </guide:baseEnergyConsumption>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrients/203"/>
+	<guide:limitValue rdf:datatype="&xsd;double">91</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrients/205"/>
+	<guide:limitValue rdf:datatype="&xsd;double">271</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/204"/>
+	<guide:limitValue rdf:datatype="&xsd;double">65</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/606"/>
+	<guide:limitValue rdf:datatype="&xsd;double">17</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/645"/>
+	<guide:limitValue rdf:datatype="&xsd;double">24</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/646"/>
+	<guide:limitValue rdf:datatype="&xsd;double">20</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/675"/>
+	<guide:limitValue rdf:datatype="&xsd;double">18</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/851"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1.7</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/601"/>
+	<guide:limitValue rdf:datatype="&xsd;double">230</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/291"/>
+	<guide:limitValue rdf:datatype="&xsd;double">31</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;gram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/306"/>
+	<guide:limitValue rdf:datatype="&xsd;double">4044</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/307"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1779</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/301"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1316</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/304"/>
+	<guide:limitValue rdf:datatype="&xsd;double">380</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/312"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1.5</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/303"/>
+	<guide:limitValue rdf:datatype="&xsd;double">18</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/305"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1740</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/309"/>
+	<guide:limitValue rdf:datatype="&xsd;double">14</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/404"/>
+	<guide:limitValue rdf:datatype="&xsd;double">2.0</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/405"/>
+	<guide:limitValue rdf:datatype="&xsd;double">2.8</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/406"/>
+	<guide:limitValue rdf:datatype="&xsd;double">22</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/415"/>
+	<guide:limitValue rdf:datatype="&xsd;double">2.4</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/578"/>
+	<guide:limitValue rdf:datatype="&xsd;double">8.3</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;microgram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/401"/>
+	<guide:limitValue rdf:datatype="&xsd;double">155</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;milligram"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/573"/>
+	<guide:limitValue rdf:datatype="&xsd;double">9.5</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;InternationalUnit"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+    <guide:hasLimit>
+      <guide:DailyNutrientLimit>
+	<guide:limitOf rdf:resource="&nndata;nutrient/320"/>
+	<guide:limitValue rdf:datatype="&xsd;double">1052</guide:limitValue>
+	<guide:hasUnit rdf:resource="&common;InternationalUnit"/>
+      </guide:DailyNutrientLimit>
+    </guide:hasLimit>
+  </guide:DailyNutritionPlan>
+
+</rdf:RDF>

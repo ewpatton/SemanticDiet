@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY sd "http://semanticdiet.com/schema/">
+  <!ENTITY nndsr "http://semanticdiet.com/schema/usda/nndsr/">
+  <!ENTITY guide "http://semanticdiet.com/schema/health.gov/dietaryguide/dga2005/">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY units "http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#">
+]>
+<rdf:RDF
+ xmlns:owl="http://www.w3.org/2002/07/owl#"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:pmlj="http://inferenceweb.stanford.edu/2006/06/pml-justification.owl#"
+ xmlns:pmlp="http://inferenceweb.stanford.edu/2006/06/pml-provenance.owl#"
+ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:nndsr22="http://semanticdiet.com/data/usda/nndsr/22/"
+ xmlns:nndsr="http://semanticdiet.com/schema/usda/nndsr/"
+ xmlns:units="http://sweet.jpl.nasa.gov/2.0/sciUnits.owl#"
+ xmlns:oper2="http://sweet.jpl.nava.gov/2.0/mathOperation.owl#"
+ xmlns:sd="http://semanticdiet.com/schema/"
+ xmlns:guide="&guide;"
+>
+
+  <!-- OWL Class definitions -->
+  <owl:Class rdf:about="&nndsr;Nutrient">
+    <rdfs:label>Nutrient</rdfs:label>
+    <rdfs:comment>A nutrient as defined by the United States Department of Agriculture</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="&nndsr;FoodItem">
+    <rdfs:label>Food Item</rdfs:label>
+    <rdfs:comment>An individual food item such as ground beef, celery, etc.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;hasMeasurement"/>
+	<owl:allValuesFrom rdf:resource="&nndsr;NutrientMeasurement"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&nndsr;FoodGroup">
+    <rdfs:label>Food Group</rdfs:label>
+    <rdfs:comment>Represents a food group as defined by the United States Department of Agriculture</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="&nndsr;Measurement">
+    <rdfs:label>Measurement</rdfs:label>
+    <rdfs:comment>Represents the measurement of a particular nutrient in the national nutrient database</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;hasUnit"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;measureOf"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;measuredValue"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&nndsr;NutrientMeasurement">
+    <rdfs:label>Nutrient Measurement</rdfs:label>
+    <rdfs:comment>A measurement class to represent nutrients</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;measureOf"/>
+	<owl:allValuesFrom rdf:resource="&nndsr;Nutrient"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&guide;DailyNutritionPlan">
+    <rdfs:label>Daily Nutrition Plan</rdfs:label>
+    <rdfs:comment>A set of daily nutritional values that should be met to maintain a healthy eating style, often established by a government agency.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&guide;baseEnergyConsumption"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&guide;hasLimit"/>
+	<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&guide;DailyNutrientLimit">
+    <rdfs:label>Daily Nutrient Limit</rdfs:label>
+    <rdfs:comment>A singular nutrient limit for a day.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&guide;limitOf"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&guide;limitValue"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+	<owl:onProperty rdf:resource="&nndsr;hasUnit"/>
+	<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <!-- OWL Object Properties -->
+  <owl:ObjectProperty rdf:about="&sd;hasMeasurement">
+    <rdfs:label>Has Measurement</rdfs:label>
+    <rdfs:comment>Indicates a measurement of some object using a specific quanity and unit value</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&nndsr;hasUnit">
+    <rdfs:label>Has Unit</rdfs:label>
+    <rdfs:comment>Specifies the unit of an object</rdfs:comment>
+    <rdfs:range rdf:resource="&units;Unit"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&nndsr;measureOf">
+    <rdfs:label>Measure of</rdfs:label>
+    <rdfs:comment>Specifies an item being measured</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&nndsr;measuredIn">
+    <rdfs:label>Measured in</rdfs:label>
+    <rdfs:comment>Specifies the commonly measured unit for an object</rdfs:comment>
+    <rdfs:range rdf:resource="&units;Unit"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&sd;hasLimit">
+    <rdfs:label>Has Limit</rdfs:label>
+    <rdfs:comment>Indicates a limit on a particular object</rdfs:comment>
+  </owl:ObjectProperty>
+  <!-- OWL Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="&nndsr;hasPercentRefuse">
+    <rdfs:label>Has Percent Refuse</rdfs:label>
+    <rdfs:comment>The percentage of the item considered waste</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&nndsr;hasNitrogenFactor">
+    <rdfs:label>Has Nitrogen Factor</rdfs:label>
+    <rdfs:comment>Factor used to convert nitrogen into protein</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&nndsr;hasProteinFactor">
+    <rdfs:label>Has Protein Factor</rdfs:label>
+    <rdfs:comment>Factor used for calculating calories from protein</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&nndsr;hasFatFactor">
+    <rdfs:label>Has Fat Factor</rdfs:label>
+    <rdfs:comment>Factor used for calculating calories from fat</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&nndsr;hasCarbohydrateFactor">
+    <rdfs:label>Has Carbohydrate Factor</rdfs:label>
+    <rdfs:comment>Factor used for calculating calories from carbohydrates</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&nndsr;measuredValue">
+    <rdfs:label>Measured Value</rdfs:label>
+    <rdfs:comment>The amount measured of a particular thing</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;double"/>
+  </owl:DatatypeProperty>
+
+</rdf:RDF>

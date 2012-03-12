@@ -17,8 +17,9 @@ cd source/usda-gov/nutrient-database/version/$NAME/source
 pcurl.sh "$URL" -n $NAME -e $EXT || exit -1
 punzip.sh "$NAME.$EXT" || exit -1
 FILES=`ls *.txt`
+cd ..
 for FILE in $FILES
 do
-    sed 's/"/\"/g' < "$FILE" | sed 's/~/"/g' | sed 's/\^/,/g' | "../manual/$FILE"
-    . justify.sh "$FILE" "../manual/$FILE" $SCRIPT-$GITHASH --history
+    sed 's/"/\"/g ; s/~/"/g ; s/\^/,/g' < "source/$FILE" > "manual/$FILE"
+    justify.sh "source/$FILE" "manual/$FILE" $SCRIPT-$GITHASH
 done
