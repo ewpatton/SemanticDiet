@@ -32,6 +32,7 @@
 @prefix ov:            <http://open.vocab.org/terms/> .
 @prefix conversion:    <http://purl.org/twc/vocab/conversion/> .
 @prefix :              <http://semanticdiet.com/source/usgs-gov/dataset/nutrient-database/version/release-25/params/enhancement/2> .
+@prefix nutrition:     <http://semanticdiet.com/ontology/2/0/nutrition.ttl#> .
 
 <http://evanpatton.com/evan.rdf#me> foaf:holdsAccount <http://mbp.evanpatton.com/#ewpatton> .
 <http://mbp.evanpatton.com/#ewpatton>
