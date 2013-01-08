@@ -31,8 +31,7 @@
 @prefix foaf:          <http://xmlns.com/foaf/0.1/> .
 @prefix ov:            <http://open.vocab.org/terms/> .
 @prefix conversion:    <http://purl.org/twc/vocab/conversion/> .
-@prefix :              <http://semanticdiet.com/source/usgs-gov/dataset/nutrition-database/version/release-25/params/enhancement/1/> .
-@prefix nutr:          <http://semanticdiet.com/ontologies/2/0/nutrition.ttl#> .
+@prefix :              <http://semanticdiet.com/source/usgs-gov/dataset/nutrient-database/version/release-25/params/enhancement/1/> .
 
 <http://evanpatton.com/evan.rdf#me> foaf:holdsAccount <http://mbp.evanpatton.com/##ewpatton> .
 <http://mbp.evanpatton.com/##ewpatton>
@@ -48,12 +47,12 @@
 #   #conversion:type_name     "My Class";   # Can also be a URI, e.g. foaf:Person.
 #.
 
-<http://semanticdiet.com/source/usgs-gov/dataset/nutrition-database/version/release-25/conversion/enhancement/1>
+<http://semanticdiet.com/source/usgs-gov/dataset/nutrient-database/version/release-25/conversion/enhancement/1>
    a conversion:LayerDataset, void:Dataset;
 
    conversion:base_uri           "http://semanticdiet.com"^^xsd:anyURI;
    conversion:source_identifier  "usgs-gov";
-   conversion:dataset_identifier "nutrition-database";
+   conversion:dataset_identifier "nutrient-database";
    conversion:version_identifier "release-25";
    conversion:enhancement_identifier "1";
 
@@ -63,7 +62,7 @@
       conversion:subject_discriminator  "nut-data.txt";
 
       dcterms:creator <http://mbp.evanpatton.com/##ewpatton>;
-      dcterms:created "2012-12-13T17:17:53-05:00"^^xsd:dateTime;
+      dcterms:created "2013-01-07T12:22:47-05:00"^^xsd:dateTime;
 
       conversion:delimits_cell ",";
       #conversion:delimits_cell "	"; # tab
@@ -78,34 +77,23 @@
       #   conversion:domain_template "thing_[r]";
       #   conversion:domain_name     "Thing";
       #];
-      conversion:enhance [
-         ov:csvRow -1;
-	 a conversion:HeaderRow;
-      ];
-      conversion:enhance [
-         ov:csvCol 0;
-	 a conversion:DataStartRow;
-      ];
-      conversion:enhance [
-         conversion:class_name "Nutrient Measurement";
-         conversion:subclass_of <http://semanticdiet.com/ontologies/2/0/nutrition.ttl#NutrientMeasurement>;
-      ];
+      #conversion:enhance [
+      #   conversion:class_name "Thing";
+      #   conversion:subclass_of <http://purl.org/...>;
+      #];
       conversion:enhance [
          ov:csvCol          1;
-         ov:csvHeader       "Food Number";
+         ov:csvHeader       "01001";
          #conversion:label   "01001";
-         conversion:domain_template "[/]food/usda-nndsr/[.]"; #???
-	 conversion:equivalent_property nutr:hasNutritionalContent; #???
          conversion:comment "";
-         conversion:range   rdfs:Resource;
+         conversion:range   todo:Literal;
       ];
       conversion:enhance [
          ov:csvCol          2;
-         ov:csvHeader       "Nutrient Number";
+         ov:csvHeader       "203";
          #conversion:label   "203";
          conversion:comment "";
-	 conversion:range_template "[/]nutrient/usda-nndsr/[.]";
-         conversion:range   rdfs:Resource;
+         conversion:range   todo:Literal;
       ];
       conversion:enhance [
          ov:csvCol          3;
@@ -172,8 +160,50 @@
       ];
       conversion:enhance [
          ov:csvCol          12;
+         ov:csvHeader       "";
+         #conversion:label   "";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          13;
+         ov:csvHeader       "";
+         #conversion:label   "";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          14;
+         ov:csvHeader       "";
+         #conversion:label   "";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          15;
+         ov:csvHeader       "";
+         #conversion:label   "";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          16;
+         ov:csvHeader       "";
+         #conversion:label   "";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          17;
          ov:csvHeader       "11/1976";
          #conversion:label   "11/1976";
+         conversion:comment "";
+         conversion:range   todo:Literal;
+      ];
+      conversion:enhance [
+         ov:csvCol          18;
+         ov:csvHeader       "";
+         #conversion:label   "";
          conversion:comment "";
          conversion:range   todo:Literal;
       ];

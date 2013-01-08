@@ -15,7 +15,7 @@
 for table in `find source -name "*.txt"`; do
    csv="manual/`basename $table`.csv"
    echo "$table -> $csv"
-   cat $table | sed 's/~//g; s/^/"/; s/\^\^/^/g; s/\^/","/g; s/,"[^"]*$//' > $csv
+   cat $table | sed 's/"/\\"/g; s/~/"/g; s/\^/,/g' > $csv
    justify.sh $table $csv redelimit &> /dev/null
 done
 
