@@ -116,13 +116,17 @@
          conversion:range   rdfs:Resource;
          a conversion:DirectSameAsEnhancement;
          conversion:bundled_by :nutr_measurement_bundle;
+         conversion:equivalent_property nutrition:measuredNutrient;
       ];
       conversion:enhance [
          ov:csvCol          3;
-         ov:csvHeader       "0.85";
+         ov:csvHeader       "Amount in 100 grams, edible portion";
          #conversion:label   "0.85";
+         conversion:property_name "value";
          conversion:comment "";
-         conversion:range   todo:Literal;
+         conversion:range   rdfs:Literal;
+         conversion:bundled_by :nutr_measurement_bundle;
+         conversion:equivalent_property nutrition:amountIn100g;
       ];
       conversion:enhance [
          ov:csvCol          4;
