@@ -22,7 +22,11 @@
 @prefix doap:          <http://usefulinc.com/ns/doap#> .
 @prefix nfo:           <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
 @prefix sio:           <http://semanticscience.org/resource/> .
+@prefix org:           <http://www.w3.org/ns/org#> .
+@prefix vsr:           <http://purl.org/twc/vocab/vsr#> .
+@prefix dcat:          <http://www.w3.org/ns/dcat#> .
 @prefix qb:            <http://purl.org/linked-data/cube#> .
+@prefix pml:           <http://provenanceweb.org/ns/pml#> .
 @prefix dgtwc:         <http://data-gov.tw.rpi.edu/2009/data-gov-twc.rdf#> .
 @prefix dcterms:       <http://purl.org/dc/terms/> .
 @prefix void:          <http://rdfs.org/ns/void#> .
@@ -31,29 +35,28 @@
 @prefix foaf:          <http://xmlns.com/foaf/0.1/> .
 @prefix ov:            <http://open.vocab.org/terms/> .
 @prefix conversion:    <http://purl.org/twc/vocab/conversion/> .
-@prefix nutrition:     <http://semanticdiet.com/ontologies/2/0/nutrition.ttl#> .
-@prefix units:         <http://sweet.jpl.nasa.gov/2.1/reprSciUnits.owl#> .
-@prefix :              <http://semanticdiet.com/source/usgs-gov/dataset/nutrient-database/version/release-25/params/enhancement/1/> .
+@prefix :              <http://semanticdiet.com/data/source/usda-gov/dataset/nutrient-database/version/release-25/params/enhancement/1/> .
 
-<http://evanpatton.com/evan.rdf#me> foaf:holdsAccount <http://mbp.evanpatton.com/#ewpatton> .
-<http://mbp.evanpatton.com/#ewpatton>
+<http://www.evanpatton.com/evan.rdf#me> foaf:holdsAccount <http://semanticdiet.com/machine/dev.semanticdiet.com#ewpatton> .
+<http://semanticdiet.com/machine/dev.semanticdiet.com#ewpatton>
    a foaf:OnlineAccount;
    foaf:accountName "ewpatton";
-   dcterms:isPartOf <http://mbp.evanpatton.com/#>;
-   sioc:account_of  <http://evanpatton.com/evan.rdf#me>;
+   dcterms:isPartOf <http://semanticdiet.com/machine/dev.semanticdiet.com>;
+   sioc:account_of  <http://www.evanpatton.com/evan.rdf#me>;
 .
 
 #:a_bundle
 #   a conversion:ImplicitBundle;
 #   conversion:property_name "a_property"; # Can also be a URI, e.g. dcterms:title.
+#   conversion:name_template "[/sd]company/[#2]/[r]";
 #   #conversion:type_name     "My Class";   # Can also be a URI, e.g. foaf:Person.
 #.
 
-<http://semanticdiet.com/source/usgs-gov/dataset/nutrient-database/version/release-25/conversion/enhancement/1>
+<http://semanticdiet.com/data/source/usda-gov/dataset/nutrient-database/version/release-25/conversion/enhancement/1>
    a conversion:LayerDataset, void:Dataset;
 
-   conversion:base_uri           "http://semanticdiet.com"^^xsd:anyURI;
-   conversion:source_identifier  "usgs-gov";
+   conversion:base_uri           "http://semanticdiet.com/data"^^xsd:anyURI;
+   conversion:source_identifier  "usda-gov";
    conversion:dataset_identifier "nutrient-database";
    conversion:version_identifier "release-25";
    conversion:enhancement_identifier "1";
@@ -61,10 +64,16 @@
    conversion:conversion_process [
       a conversion:EnhancementConversionProcess;
       conversion:enhancement_identifier "1";
-      conversion:subject_discriminator  "nutr-def.txt";
+      conversion:subject_discriminator  "langual";
 
-      dcterms:creator <http://mbp.evanpatton.com/#ewpatton>;
-      dcterms:created "2013-01-07T12:22:45-05:00"^^xsd:dateTime;
+      dcterms:creator <http://semanticdiet.com/machine/dev.semanticdiet.com#ewpatton>;
+      dcterms:created "2013-07-04T01:25:16-04:00"^^xsd:dateTime;
+
+
+      #conversion:enhance [
+      #   ov:csvRow 2;
+      #   a conversion:DataStartRow;
+      #];
 
       conversion:delimits_cell ",";
       #conversion:delimits_cell "	"; # tab
@@ -84,76 +93,28 @@
       #   conversion:subclass_of <http://purl.org/...>;
       #];
       conversion:enhance [
-         ov:csvRow -1;
-         a conversion:HeaderRow;
-      ];
-      conversion:enhance [
-         ov:csvRow 0;
-         a conversion:DataStartRow;
-      ];
-      conversion:enhance [
-         ov:csvCol          4;
-         ov:csvHeader       "Long Name";
-         conversion:domain_template "[/]nutrient/[.]";
-         conversion:domain_name     "Nutrient";
-      ];
-      conversion:enhance [
-         conversion:class_name "Nutrient";
-         conversion:subclass_of nutrition:Nutrient;
-      ];
-#      conversion:enhance [
-#         ov:csvCol          1;
-#         ov:csvHeader       "Nutrient Number";
-#         conversion:equivalent_property owl:sameAs;
-#         conversion:range rdfs:Resource;
-#         conversion:range_template "[/]nutrient/usda-nndsr/[.]";
-#      ];
-      conversion:enhance [
          ov:csvCol          1;
-         ov:csvHeader       "Nutrient Number";
-         conversion:equivalent_property dcterms:identifier;
-         conversion:range rdfs:Literal;
+         ov:csvHeader       "02001";
+         #conversion:bundled_by [ ov:csvCol 1 ];
+         #conversion:label   "02001";
+         #conversion:equivalent_property dcterms:identifier;
+         #conversion:subproperty_of      dcterms:identifier;
+         conversion:comment "";
+         #conversion:range_template  "[/sd]thing[.]";
+         conversion:range   todo:Literal;
+         #conversion:range_name  "Thing";
       ];
       conversion:enhance [
          ov:csvCol          2;
-         ov:csvHeader       "Measurement Unit";
-         #conversion:label   "g";
+         ov:csvHeader       "A0113";
+         #conversion:bundled_by [ ov:csvCol 1 ];
+         #conversion:label   "A0113";
+         #conversion:equivalent_property dcterms:identifier;
+         #conversion:subproperty_of      dcterms:identifier;
          conversion:comment "";
-         conversion:equivalent_property units:hasUnit;
-         conversion:range   rdfs:Resource;
-         conversion:range_template "[/]units/[.]";
-      ];
-      conversion:enhance [
-         ov:csvCol          3;
-         ov:csvHeader       "Short Name";
-         #conversion:label   "PROCNT";
-         conversion:comment "";
-         conversion:equivalent_property skos:altLabel;
-         conversion:range   rdfs:Literal;
-      ];
-      conversion:enhance [
-         ov:csvCol          4;
-         ov:csvHeader       "Long Name";
-         #conversion:label   "Protein";
-         conversion:comment "";
-         conversion:equivalent_property rdfs:label,skos:prefLabel;
-         conversion:range   rdfs:Literal;
-      ];
-      conversion:enhance [
-         ov:csvCol          5;
-         ov:csvHeader       "Decimals";
-         #conversion:label   "2";
-         conversion:comment "";
-         conversion:equivalent_property nutrition:hasDecimals;
-         conversion:range   rdfs:Literal;
-      ];
-      conversion:enhance [
-         ov:csvCol          6;
-         ov:csvHeader       "Sort Order";
-         #conversion:label   "600";
-         conversion:comment "";
-         conversion:equivalent_property nutrition:sortOrder;
-         conversion:range   rdfs:Literal;
+         #conversion:range_template  "[/sd]thing[.]";
+         conversion:range   todo:Literal;
+         #conversion:range_name  "Thing";
       ];
       #conversion:enhance [            
       #   ov:csvRow 3,4,5;             
