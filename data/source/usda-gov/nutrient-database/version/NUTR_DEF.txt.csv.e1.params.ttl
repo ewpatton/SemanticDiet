@@ -136,7 +136,8 @@
 	    conversion:interpretation "international unit";
 	 ];
 
-         a conversion:ObjectSameAsEnhancementViaLookup;
+         a conversion:ObjectSameAsEnhancementViaLookup,
+           conversion:DirectSameAsEnhancement;
          conversion:links_via <http://purl.obolibrary.org/obo/uo.owl#>;
          conversion:subject_of rdfs:label;
       ];
